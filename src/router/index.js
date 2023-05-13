@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/HomeView',
       name: 'HomeView',
       component: () => import('../views/HomeView.vue')
     },
@@ -51,6 +51,10 @@ const router = createRouter({
     {
       path: "/:notFound",
       component: () => import('../components/NotFound.vue')
+    },
+    {
+      path: "/",
+      component: () => import('../views/HomeSass.vue')
     },
   ]
 })

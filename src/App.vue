@@ -54,18 +54,20 @@ export default {
     LoginView,
     AppPrueba, 
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   }
 }
 
   </script>
   
-<style>
-  body{
-    height: 100vh;
-    /* background-image: url(./assets/tiro-angulo-alto-vertical-edificios-blancos-santorini-grecia.jpg); */
-    /* background-size: cover; */
-    /* background-position: center; */
-    background-color: #000000;
-  }
+<style lang="scss">
+
+
+  // body{
+  //   height: 100vh;
+  //   /* background-image: url(./assets/tiro-angulo-alto-vertical-edificios-blancos-santorini-grecia.jpg); */
+  //   /* background-size: cover; */
+  //   /* background-position: center; */
+  //   background-color: #000000;
+  // }
 </style>

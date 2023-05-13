@@ -7,6 +7,7 @@
           <li><router-link class="listNav DatosInt" to="/"> Inicio </router-link></li>
           <li><router-link class="listNav DatosInt" to="/travels"> Viajes Disponibles </router-link></li>
           <li><router-link class="listNav DatosInt" to="/countries"> Datos internacionales</router-link></li>
+          <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><IconShoppingCart color="#fff" :size="25" stroke-width="2"  /></li>
           <!-- <li> <a href="#" class="listNav" >Inicio</a> </li>
           <li> <a href="#" class="listNav" >Servicios </a> </li>
           <li> <a href="#" class="listNav" >Contacto</a> </li> -->
@@ -29,23 +30,11 @@
       </ul>
     </div>
   </header>
+
+  <ShoppingCart></ShoppingCart>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-    showMobileMenu: false,
-  };
-  },
-  methods: {
-    showMenu() {
-      console.log("aveer")
-      this.showMobileMenu = !this.showMobileMenu;
-  },
-  },
-};
-</script>
+
 
 <style>
 
@@ -197,11 +186,28 @@ export default {
 
 </style>
 
-<script setup>
+<script>
 import { IconMenu2 } from '@tabler/icons-vue';
+import { IconShoppingCart } from '@tabler/icons-vue';  
 
+import ShoppingCart from './ShoppingCart.vue';
 
-
-
+export default {
+  data() {
+    return {
+    showMobileMenu: false,
+    };
+  },
+  methods: {
+    showMenu() {
+      console.log("aveer")
+      this.showMobileMenu = !this.showMobileMenu;
+    },
+  },
+  components: {
+    ShoppingCart, 
+    IconMenu2,
+    IconShoppingCart
+  }
+};
 </script>
-

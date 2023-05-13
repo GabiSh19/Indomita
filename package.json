@@ -13,6 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@popperjs/core": "^2.11.7",
     "@tabler/icons-vue": "^2.17.0",
     "@vueuse/firebase": "^10.1.2",
     "bootstrap": "^5.2.3",
@@ -27,6 +28,9 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
-    "vite": "^4.1.4"
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "vite": "^4.1.4",
+    "webpack": "^5.82.1"
   }
 }

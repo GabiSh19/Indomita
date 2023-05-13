@@ -7,7 +7,6 @@ import * as directives from 'vuetify/directives'
 import 'vuetify/styles'
 import store from './store'
 
-
 const vuetify = createVuetify({
   components,
   directives,
@@ -16,7 +15,8 @@ const vuetify = createVuetify({
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
 
-createApp(App).use(store)
+createApp(App)
+  .use(store)
   .use(router)
   .use(vuetify)
   .mount('#app')
