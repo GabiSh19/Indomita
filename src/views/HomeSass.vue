@@ -5,28 +5,7 @@
     
         </div>
     
-        <div class="contenedor">
-            <div class="content">
-                <div class="bannerText"> 
-                    <div class="active">
-                        <h2>Tokyo</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores nobis molestias corporis placeat, in odio pariatur. Nulla recusandae eaque, beatae harum obcaecati necessitatibus possimus adipisci nesciunt ut laboriosam porro consectetur
-                        </p>
-                    </div>
-                    <div>
-                        <h2>Egipto</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores nobis molestias corporis placeat, in odio pariatur. Nulla recusandae eaque, beatae harum obcaecati necessitatibus possimus adipisci nesciunt ut laboriosam porro consectetur
-                        </p>
-                    </div>
-                    <div>
-                        <h2>Maldivas</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores nobis molestias corporis placeat, in odio pariatur. Nulla recusandae eaque, beatae harum obcaecati necessitatibus possimus adipisci nesciunt ut laboriosam porro consectetur
-                        </p>
-                    </div>
-                </div>    
-                
-            </div>
-        </div>          
+        
         <div class="controls">
             <li @click="nextSlide()"><img src="../assets/limage.png" alt=""></li>
             <li><img src="../assets/rightimage.png" alt=""></li>

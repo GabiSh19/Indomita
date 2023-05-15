@@ -11,7 +11,10 @@ export default createStore({
     login: false,
     viajes: [],
     viajesFiltrados: [],
-    mostrarCurso: {codigo: '', nombre: '', estado: '', precio: '', duracion: '', descripcion: '', cupos: '', inscritos: '', img: ''}
+    mostrarCurso: {codigo: '', nombre: '', estado: '', precio: '', duracion: '', descripcion: '', cupos: '', inscritos: '', img: ''},
+    carrito: JSON.parse(localStorage.getItem('carrito')) ? JSON.parse(localStorage.getItem('carrito')) : [],
+    valores: JSON.parse(localStorage.getItem('valores')) ? JSON.parse(localStorage.getItem('valores')) : 0,
+    cantCarrito: JSON.parse(localStorage.getItem('cantCarrito')) ? JSON.parse(localStorage.getItem('cantCarrito'))   : 0,
   },
 
   getters: {
@@ -40,7 +43,70 @@ export default createStore({
 
     getViajesFiltrados(state, payload){
       state.cursosFiltrados = payload
-    } 
+    },
+    agregar(state, payload){
+      console.log(state.carrito)
+      const yaExiste = state.carrito.some((element) => { 
+          return payload.id === element.id
+      })
+      
+      if(yaExiste){
+          payload.cantidad = payload.cantidad + 1 
+          state.valores = state.valores+(payload.precio) 
+      }else{
+          state.carrito.push(payload) 
+          // state.carrito = JSON.parse(localStorage.getItem('carrito')),
+          state.valores = state.valores+(payload.precio) 
+      }
+      state.cantCarrito = state.carrito.length; 
+      localStorage.setItem('carrito', JSON.stringify(state.carrito))
+      localStorage.setItem('valores', JSON.stringify(state.valores))
+      localStorage.setItem('cantCarrito', JSON.stringify(state.carrito.length))
+
+    },
+    restar(state, payload){
+
+        if(payload.cantidad == 1){
+            state.carrito = state.carrito.filter((element)=>{
+            return element.id != payload.id;
+            })
+            state.valores = state.valores - (payload.precio * payload.cantidad)
+            payload.cantidad = 1
+        }
+        else if(payload.cantidad > 1){
+            payload.cantidad = payload.cantidad - 1
+            state.valores = state.valores - (payload.precio)
+        }
+        state.cantCarrito = state.carrito.length;
+        localStorage.setItem('carrito', JSON.stringify(state.carrito))
+        localStorage.setItem('valores', JSON.stringify(state.valores))
+        localStorage.setItem('cantCarrito', JSON.stringify(state.carrito.length))
+    },
+
+    eliminar(state, payload){
+        state.carrito = state.carrito.filter((element)=>{
+            return element.id != payload.id;
+        })
+        state.valores = state.valores - (payload.precio * payload.cantidad)
+        payload.cantidad = 1
+
+        state.cantCarrito = state.carrito.length;
+        localStorage.setItem('carrito', JSON.stringify(state.carrito))
+        localStorage.setItem('valores', JSON.stringify(state.valores))
+        localStorage.setItem('cantCarrito', JSON.stringify(state.carrito.length))
+    },
+
+    limpiarCarro(state,payload){
+        state.carrito = [];
+        state.valores = 0;
+        payload.forEach(element => {
+            element.cantidad = 1;
+        });
+        state.cantCarrito = state.carrito.length;
+        localStorage.setItem('carrito', JSON.stringify(state.carrito));
+        localStorage.setItem('valores', JSON.stringify(state.valores));
+        localStorage.setItem('cantCarrito', JSON.stringify(state.carrito.length))
+    },
   },
 
   actions: {

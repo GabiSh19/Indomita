@@ -28,7 +28,7 @@
                   <li class="list-group-item">Cupos: {{viaje.cupos }}</li>
                   <li class="list-group-item">Precio: $ {{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(viaje.precio)}}</li>
               </ul>
-              <button :class = " viaje.estado === 'true' ? 'btnInscribir' : 'btnDisabled'" :disabled="viaje.estado === 'false' ">{{viaje.estado === 'true' ? 'Inscribirme' : 'No disponible' }}</button>
+              <button  @click="agregar(viaje)" :class = " viaje.estado === 'true' ? 'btnInscribir' : 'btnDisabled'" :disabled="viaje.estado === 'false' ">{{viaje.estado === 'true' ? 'Inscribirme' : 'No disponible' }}</button>
           </div>
       </div>
   </div>
@@ -38,7 +38,7 @@
   
   <script>
   import FadeLoader from 'vue-spinner/src/FadeLoader.vue'
-  import {mapActions, mapState} from 'vuex' 
+  import {mapActions, mapState, mapMutations} from 'vuex' 
   import { useStore } from 'vuex'
   
 
@@ -73,6 +73,7 @@
       },
 
     methods: {
+        ...mapMutations (['agregar']),
           ...mapActions(['getViajes'])
       },
 

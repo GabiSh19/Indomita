@@ -46,10 +46,10 @@
   header{
     background-color: rgba(0,0,0,.85);
     position: relative;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
   }
   .logo{
-    height: 3.5em;
+    height: 2.5em;
     } 
   
   .toggle_btn{
