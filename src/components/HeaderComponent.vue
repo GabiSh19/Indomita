@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar">
 
-      <router-link class="listNav" to="/"><img class="logo" src="../assets/image (2).png"></router-link>
+      <router-link class="listNav" to="/"><img class="logo" src="../assets/logo.png"></router-link>
         <ul class="links">
           <li><router-link class="listNav DatosInt" to="/"> Inicio </router-link></li>
           <li><router-link class="listNav DatosInt" to="/travels"> Viajes Disponibles </router-link></li>
@@ -44,7 +44,7 @@
 }
 
   header{
-    background-color: #434F85;
+    background-color: rgba(0,0,0,.85);
     position: relative;
     padding: 0 2rem;
   }
@@ -94,7 +94,7 @@
 
   .listNav {
       text-decoration: none;
-      color: #fff;
+      color: #ffffff;
       font-size: 1rem;
       list-style: none;
     }
