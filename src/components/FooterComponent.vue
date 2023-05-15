@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
       <div class="logoFooter">
-        <router-link class="listNav" to="/"><img class="logo" src="../assets/image (2).png"></router-link>
+        <router-link class="listNav" to="/"><img class="logo" src="../assets/logo.png"></router-link>
       </div>
       <div class="informacion">
         <h2>INDOMITA EXPEDITIONS</h2>
@@ -17,9 +17,9 @@
   <style>
 
     .footer{
-        background-color: #434F85;
+        background-color: rgba(0,0,0,.85);
         padding: 1em 2rem;
-        color: white;
+        color: rgb(255, 255, 255);
         display: flex;
         justify-content: center;
     }
