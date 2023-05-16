@@ -5,13 +5,13 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/HomeView',
       name: 'HomeView',
       component: () => import('../views/HomeView.vue')
     },
     {
-      path: '/travels',
-      name: 'travels',
+      path: '/TravelsView',
+      name: 'TravelsView',
       component: () => import('../views/TravelsView.vue')
     },
     {
@@ -37,8 +37,8 @@ const router = createRouter({
       component: () => import('../views/AppPrueba.vue')
     },
     {
-      path: '/paises',
-      name: 'paises',
+      path: '/AdminTravel',
+      name: '',
       props: true,
       component: () => import('../views/AdminTravel.vue')
     },
@@ -55,6 +55,10 @@ const router = createRouter({
     {
       path: "/HomeSass",
       component: () => import('../views/HomeSass.vue')
+    },
+    {
+      path: "/",
+      component: () => import('../views/PurchaseForm.vue')
     },
   ]
 })

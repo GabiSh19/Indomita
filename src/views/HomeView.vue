@@ -6,7 +6,7 @@
     <div class="texto">
       <h1>SUMÉRGETE EN LA AVENTURA DE INDÓMITA</h1>
       <h5>¡Descubrir el mundo suena genial!</h5>
-      <p>Elige un destino y nosotros nos preocupamos del resto: pasajes aéreos, estadía, guía turística, seguro médico y ¡Mucho más!</p>
+      <p>Elige un destino y nosotros nos ocupamos del resto: pasajes aéreos, estadía, guía turística, seguro médico y ¡Mucho más!</p>
       <button class="actionStart">COMENZAR</button>
     </div>
   </div>

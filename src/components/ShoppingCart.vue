@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <table class="table table-bordered">
+        <ta ble class="table table-bordered">
                 <thead class=" table-success">
                 <tr class="align-items-center">
                     <th scope="col">Producto</th>
@@ -15,28 +15,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr v-for="carro in carrito" :key="carro.cantidad">
+                    <tr v-for="carro in carrito" :key="carro.cantidad">
                         <td>{{carro.nombre}}</td>
                         <td class="cantidad">
                             <div class="suma">{{carro.cantidad}}</div>
-
-                            <font-awesome-icon :icon="['fas', 'arrow-up']" @click="agregar(carro)" class="me-2" style="color: #19b81c;"/>
-                            <font-awesome-icon :icon="['fas', 'arrow-down']" @click="restar(carro)" style="color: #c93c2c;"/>
-                         
-
+                            <IconCirclePlus color="#e15343" :size="20" stroke-width="2" @click="agregar(carro)" />
+                            <IconCircleMinus color="#66d767" :size="20" stroke-width="2"  @click="restar(carro)" />                        
                         </td>
                         <td>${{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(carro.precio)}}</td>
-                        <td><ion-icon name="trash-outline"  @click="eliminar(carro)"></ion-icon></td>
-                    </tr> -->
+                        <td><IconTrash color="#000000" :size="20" stroke-width="2"  @click="eliminar(carro)" /></td>
+                    </tr>
                 </tbody>
-        </table>
-        <!-- <div class="summary">
+        </ta>
+        <div class="summary">
             <p>Total: $ {{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(valores)}}</p>
-        </div> -->
-        <!-- <div class="d-grid gap-2 col-10 mx-auto">
+        </div> 
+        <div class="d-grid gap-2 col-10 mx-auto">
             <button class="btn btn-outline-success" type="button" @click="limpiarCarro(carrito)">Limpiar mi Carrito</button>
             <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#finalizarModal">Finalizar mi compra</button>
-        </div> --> 
+        </div> 
       </div>
     </div>
 
@@ -85,13 +82,29 @@
 <script>
 import { IconCirclePlus } from '@tabler/icons-vue';
 import { IconCircleMinus } from '@tabler/icons-vue';
+import { IconTrash } from '@tabler/icons-vue';
+import {mapState, mapMutations} from 'vuex'
 
 export default {
 
     components: {
         IconCirclePlus,
-        IconCircleMinus
-    }
+        IconCircleMinus,
+        IconTrash
+        
+    },
+    computed: {
+    ...mapState(['carrito']),
+    ...mapState(['valores'])    
+    },
+
+    methods: {
+    
+    ...mapMutations(['agregar']),
+    ...mapMutations(['restar']),
+    ...mapMutations(['eliminar']),
+    ...mapMutations(['limpiarCarro'])
+}
 
 }
 
