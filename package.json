@@ -17,6 +17,7 @@
     "@tabler/icons-vue": "^2.17.0",
     "@vueuse/firebase": "^10.1.2",
     "bootstrap": "^5.2.3",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.21.0",
     "sweetalert2": "^11.7.5",
     "swiper": "^6.8.4",

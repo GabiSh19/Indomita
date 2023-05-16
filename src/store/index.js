@@ -11,7 +11,7 @@ export default createStore({
     login: false,
     viajes: [],
     viajesFiltrados: [],
-    mostrarCurso: {codigo: '', nombre: '', estado: '', precio: '', duracion: '', descripcion: '', cupos: '', inscritos: '', img: ''},
+    mostrarViaje: {codigo: '', nombre: '', estado: '', precio: '', duracion: '', descripcion: '', cupos: '', inscritos: '', img: ''},
     carrito: JSON.parse(localStorage.getItem('carrito')) ? JSON.parse(localStorage.getItem('carrito')) : [],
     valores: JSON.parse(localStorage.getItem('valores')) ? JSON.parse(localStorage.getItem('valores')) : 0,
     cantCarrito: JSON.parse(localStorage.getItem('cantCarrito')) ? JSON.parse(localStorage.getItem('cantCarrito'))   : 0,
@@ -38,11 +38,11 @@ export default createStore({
     },
 
     getViaje(state,payload){
-      state.mostrarCurso = payload 
+      state.mostrarViaje = payload 
     },
 
     getViajesFiltrados(state, payload){
-      state.cursosFiltrados = payload
+      state.viajesFiltrados = payload
     },
     agregar(state, payload){
       console.log(state.carrito)
@@ -220,7 +220,7 @@ export default createStore({
           commit('getViajes', viajes)
       },
 
-        // Obtiene datos del curso seleccionado 
+        // Obtiene datos del viaje seleccionado 
 
       async getViaje ({commit}, idViaje){
         const datosViaje = await getDoc(doc(db, "viajes", idViaje));
@@ -281,7 +281,7 @@ export default createStore({
         let nombresViajes = viaje.nombre.toLowerCase();
         let nombreInput = nombre.toLowerCase();
         if (nombresViajes.includes(nombreInput)) {
-          return curso;
+          return viaje;
         }
       });
       commit("getViajesFiltrados", filtro);

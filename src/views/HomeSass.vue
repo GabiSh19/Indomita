@@ -140,14 +140,9 @@ section{
                     font-size: 6em;                    
                 }
             }
+            }
         }
     }
-
-
-
-    }
-    
-
 }
 
 </style>

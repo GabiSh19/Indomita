@@ -5,7 +5,7 @@
       <router-link class="listNav" to="/"><img class="logo" src="../assets/logo.png"></router-link>
         <ul class="links">
           <li><router-link class="listNav DatosInt" to="/"> Inicio </router-link></li>
-          <li><router-link class="listNav DatosInt" to="/travels"> Viajes Disponibles </router-link></li>
+          <li><router-link class="listNav DatosInt" to="/TravelsView"> Viajes Disponibles </router-link></li>
           <li><router-link class="listNav DatosInt" to="/countries"> Datos internacionales</router-link></li>
           <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><IconShoppingCart color="#fff" :size="25" stroke-width="2"  /></li>
           <!-- <li> <a href="#" class="listNav" >Inicio</a> </li>
