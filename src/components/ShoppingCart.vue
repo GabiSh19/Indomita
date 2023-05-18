@@ -6,12 +6,12 @@
       </div>
       <div class="offcanvas-body">
         <ta ble class="table table-bordered">
-                <thead class=" table-success">
+                <thead class=" table-info">
                 <tr class="align-items-center">
-                    <th scope="col">Producto</th>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col">Producto</th> 
+                    <th scope="col">Cant</th>
                     <th scope="col">Precio Unitario</th>
-                    <th scope="col">Modificar</th>
+                    <th scope="col">A</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,56 +27,19 @@
                     </tr>
                 </tbody>
         </ta>
-        <div class="summary">
+        <div class="summary mt-5 ms-3">
             <p>Total: $ {{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(valores)}}</p>
         </div> 
-        <div class="d-grid gap-2 col-10 mx-auto">
-            <button class="btn btn-outline-success" type="button" @click="limpiarCarro(carrito)">Limpiar mi Carrito</button>
-            <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#finalizarModal">Finalizar mi compra</button>
+        <div class="d-grid gap-2 col-10 mx-auto mt-5">
+            <button class="btn btn-outline-info" id="btnLimpiarCarrito" type="button" @click="limpiarCarro(carrito)">Limpiar mi Carrito</button>
+
+            <button class="btn btn-primary" id="btnFinalizaCompra" type="button" v-if="carrito.length != 0" @click="finalizaCompra(carrito)"> Finalizar mi compra </button>
+            <!-- <button class="btn btn-success" type="button" @click="finalizaCompra(carrito)"> Finalizar mi compra </button> -->
+            
         </div> 
       </div>
     </div>
 
-    <!-- <div class="modal fade" id="finalizarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"> Resumen de tu compra</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered">
-                        <thead class=" table-success">
-                        <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Precio Unitario</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="carro in carrito" :key="carro.cantidad">
-                                <td>{{carro.nombre}}</td>
-                                <td class="cantidad">
-                                    <div class="suma">{{carro.cantidad}}</div>
-
-                                </td>
-                                
-                                <td>$ {{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(carro.precio)}}</td>
-                            </tr>
-                            <div class="summary m-3">
-                                <p>Total compra: $ {{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(valores)}}</p>
-                            </div>
-                        </tbody>
-                        </table>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                    <router-link to="/" class="nav-link active" @click="cierreSesion">Aceptar</router-link>
-                  </button>
-                </div>
-              </div>
-            </div>
-        </div> -->
 </template>
 
 <script>
@@ -103,48 +66,14 @@ export default {
     ...mapMutations(['agregar']),
     ...mapMutations(['restar']),
     ...mapMutations(['eliminar']),
-    ...mapMutations(['limpiarCarro'])
-}
+    ...mapMutations(['limpiarCarro']),
+    ...mapMutations(['finalizaCompra']),
 
-}
-
-
-</script>
-
-<!-- <script >
-
-import {mapState, mapMutations} from 'vuex'
-
-
-export default {
-    name:'App',
-data(){
-    return{
-        productos: [],
-    //     carrito:  [
-    //         {nombre: "silla", valor: "1233", precio: "qwe"},
-    //         {nombre: "silla", valor: "1233", precio: "qwe"},
-    //         {nombre: "silla", valor: "1233", precio: "qwe"}
-    // ]
-    };
-},
-
-computed: {
-    ...mapState(['carrito']),
-    ...mapState(['valores'])    
-  },
-
-methods: {
-    ...mapMutations(['agregar']),
-    ...mapMutations(['restar']),
-    ...mapMutations(['eliminar']),
-    ...mapMutations(['limpiarCarro'])
-}
-
-
-}
+}}
 
 </script>
+
+
 <style scoped>
 .cantidad {
     display: flex;
@@ -158,4 +87,24 @@ methods: {
     margin-left: 10px;
     margin-right: 10px;
 }
-</style> -->
+
+#btnLimpiarCarrito{
+    border: 1px solid rgba(3, 221, 182, .5);
+    color: black;
+}
+
+#btnLimpiarCarrito:hover{
+    background-color: rgba(3, 221, 182, .1);
+}
+
+#btnFinalizaCompra{
+    background-color: rgba(3, 221, 182, .5);
+    border: 1px solid rgba(3, 221, 182, .5);
+    color: black;
+}
+
+#btnFinalizaCompra:hover{
+    background-color: rgba(3, 221, 182, .9);
+}
+
+</style> 

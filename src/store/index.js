@@ -9,6 +9,8 @@ export default createStore({
   state: {
     user: null,
     login: false,
+    rolAdmin: false,
+    rolUser: false,
     viajes: [],
     viajesFiltrados: [],
     mostrarViaje: {codigo: '', nombre: '', estado: '', precio: '', duracion: '', descripcion: '', cupos: '', inscritos: '', img: ''},
@@ -20,16 +22,26 @@ export default createStore({
   getters: {
     loginIsTrue(state){
       return state.login
-    }
+    },
+    isRolAdmin(state){
+      return state.rolAdmin
+    },
+    isRolUser(state){
+      return state.rolUser
+    },
+
   },
 
   mutations: {
     SET_USER (state, user) {
       state.user = user
+      state.login = true;
+      // console.log(user)
     },
 
     CLEAR_USER (state) {
       state.user = null
+      state.login = false;
     },
 
     getViajes(state,payload){
@@ -45,7 +57,7 @@ export default createStore({
       state.viajesFiltrados = payload
     },
     agregar(state, payload){
-      console.log(state.carrito)
+      // console.log(state.carrito)
       const yaExiste = state.carrito.some((element) => { 
           return payload.id === element.id
       })
@@ -107,6 +119,14 @@ export default createStore({
         localStorage.setItem('valores', JSON.stringify(state.valores));
         localStorage.setItem('cantCarrito', JSON.stringify(state.carrito.length))
     },
+    finalizaCompra(state){
+      state.carrito =[];
+      state.valores = 0;
+      router.push('/ConfirmTravel')
+      // router.push('/ConfirmTravel')
+    }
+    
+
   },
 
   actions: {
@@ -121,9 +141,13 @@ export default createStore({
               email: user.email,
               rol: rol
             };
-            commit('SET_USER', userData)
-            console.log(userData)
-          
+            if (userData.rol === 'admin'){ 
+              this.state.rolAdmin = true;
+            }
+            else if (userData.rol === 'usuario'){
+              this.state.rolUser = true; 
+            }
+            commit('SET_USER', userData)          
         } else {
           commit('SET_USER', null)
         }
@@ -149,7 +173,22 @@ export default createStore({
         return
       }
       commit('SET_USER', auth.currentUser)
-      router.push('/countries')
+      router.push('/TravelsView')
+
+
+      const docuCifrada = await getDoc(doc(db, "usuarios", `${auth.currentUser.uid}`))
+        const rol = docuCifrada.data().rol;          
+          const userData = {
+            uid: auth.currentUser.uid,
+            email: auth.currentUser.email,
+            rol: rol
+          };
+          if (userData.rol === 'admin'){ 
+            this.state.rolAdmin = true;
+          }
+          else if (userData.rol === 'usuario'){
+            this.state.rolUser = true; 
+          }       
     },
 
     async register ({ commit}, details) {
@@ -183,27 +222,29 @@ export default createStore({
         return
       }
       commit('SET_USER', auth.currentUser)
-      router.push('/AppPrueba')
+      router.push('/TravelsView')
     },
 
     async logout ({ commit }) {
-      await signOut(auth)
       commit('CLEAR_USER')
+      await auth.signOut();
       router.push('/login')
+      this.state.rolAdmin = false;
+      this.state.rolUser = false;
     },
 
-    fetchUser ({ commit }) {
-      auth.onAuthStateChanged(async user => {
-        if (user === null) {
-          commit('CLEAR_USER')
-        } else {
-          commit('SET_USER', user)
-          if (router.isReady() && router.currentRoute.value.path === '/login') {
-            router.push('/')
-          }
-        }
-      })
-    },
+    // fetchUser ({ commit }) {
+    //   auth.onAuthStateChanged(async user => {
+    //     if (user === null) {
+    //       commit('CLEAR_USER')
+    //     } else {
+    //       commit('SET_USER', user)
+    //       if (router.isReady() && router.currentRoute.value.path === '/login') {
+    //         router.push('/')
+    //       }
+    //     }
+    //   })
+    // },
 
      // CRUD -> READ 
 
@@ -212,10 +253,10 @@ export default createStore({
       const listado = await getDocs(collection(db, "viajes"))
           listado.forEach(doc => {    
             let viaje =  doc.data()
-            console.log(viaje)
+            // console.log(viaje)
             viaje.id = doc.id
             viajes.push(viaje)
-            console.log(listado)
+            // console.log(listado)
           });
           commit('getViajes', viajes)
       },

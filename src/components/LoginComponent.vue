@@ -1,45 +1,43 @@
 <template>
         <div class="contenedor">
-            <div class="row">
-                <div class="col-12">
+            <div class="row ">
+                <div class="col-12 col-lg-11 contenedorRow">
                         <v-window v-model="step">
                         <v-window-item :value="1">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 form login d-flex flex-column">
-                                    <h1 class="text-center mt-5 ">Inicio de sesión</h1>
-                                    <form action="" @submit.prevent="login">
-                                        <label class="label"> Correo: <input type="text" label="Email" name="Email"  class="input" v-model="login_form.email" placeholder="ejemplo@correo.com" required></label>
-                                        <label class="label"> Contraseña: <input type="password" label="Password" class="input" name="Email" v-model="login_form.password" placeholder="contraseña" required></label> 
-                                        <button class="typeSub principal" type="submit" value="Login">INICIAR SESIÓN</button> 
-                                    </form>                  
+                        <div class="row inicioS">
+                            <div class="col-12 col-sm-6 formulario login preview d-flex flex-column">
+                                <h5 class="text-center mt-3 ">Inicio de sesión</h5>
+                                <form  class="formDesktop" action="" @submit.prevent="login">
+                                    <label class="label"> Correo: <input type="text" label="Email" name="Email"  class="input" v-model="login_form.email" placeholder="ejemplo@correo.com" required></label>
+                                    <label class="label"> Contraseña: <input type="password" label="Password" class="input" name="Email" v-model="login_form.password" placeholder="contraseña" required></label> 
+                                    <button class="btnTypeSub principal mb-4" type="submit" value="Login">INICIAR SESIÓN</button> 
+                                </form>                  
                             </div>
-                            <div class="col-12 col-sm-6 form register preview d-flex flex-column"> 
-                                <h1 class="text-center ">¿No tienes cuenta?</h1>
-                                <h5 class="text-center mx-4">Regístrate y entérate de nuestras novedades </h5>  
-                                    <button class="typeSub secundario" @click="step++" type="submit">QUIERO REGISTRARME</button>
+                            <div class="col-12 col-sm-6 formulario register preview d-flex flex-column"> 
+                                <h5 class="text-center mt-3">¿No tienes cuenta?</h5>
+                                <p class="text-center mx-4 msgRegistro">Regístrate y entérate de nuestras novedades </p>  
+                                    <button class="btnTypeSub secundario mb-4" @click="step++" type="submit">QUIERO REGISTRARME</button>
                             </div>  
                         </div>
                     </v-window-item>
                     <v-window-item :value="2">
                         <div class="row BienvenidoDenuevo">
-                            <div class="col-12 col-sm-6">
-                                <h1 class="text-center">CREAR CUENTA </h1>
-                                <h4 class="text-center mt-4">Ingresa los siguientes datos para registrarte</h4>
-                                <form class="form"  @submit.prevent="register">
-                                    <input type="text" label="name" name="Name" v-model="signup_form.name" placeholder="Nombre" required>
-                                    <input type="text" label="Email" name="Email" v-model="signup_form.email" placeholder="Correo" required>
-                                    <input type="password" label="Password" name="Email" v-model="signup_form.password" placeholder="Contraseña" required>
-                                    <div class="text-center mt-n5">
-                                        <button class="typeSub" type="submit">REGISTRARME</button>
-                                    </div>
+                            <div class="col-12 col-sm-6 crearCuenta">
+                                <h5 class="text-center">Crear cuenta </h5>
+                                <p class="text-center mt-2 mb-3 msgRegistro">Ingresa los siguientes datos: </p>
+                                <form class="formulario formRegistro "  @submit.prevent="register">
+                                    <input type="text" label="name" name="Name" v-model="signup_form.name" placeholder="Nombre" class="input registro" required>
+                                    <input type="text" label="Email" name="Email" v-model="signup_form.email" placeholder="Correo" class="input registro" required>
+                                    <input type="password" label="Password" name="Email" v-model="signup_form.password" class="input registro" placeholder="Contraseña" required>
+                                    <button class="btnTypeSub registro mb-4 mt-3 " type="submit">REGISTRARME</button>
                                 </form>
                             </div>
 
-                            <div class="col-12 col-sm-6">
-                                <h1 class="text-center ">¿Ya tienes cuenta?</h1>
-                                <h5 class="text-center">Ingresa tus datos e inicia sesión</h5>
+                            <div class="col-12 col-sm-6 formulario login formlogin">
+                                <h5 class="text-center mt-3">¿Ya tienes cuenta?</h5>
+                                <p class="text-center msgRegistro mb-2 msgRegistroDesktop">Ingresa tus datos e inicia sesión</p>
                                 <div class="text-center">
-                                    <button class="typeSub" @click="step--">INICIAR SESIÓN</button>
+                                    <button class="btnTypeSub secundario mt-0 mb-4" @click="step--">INICIAR SESIÓN</button>
                                 </div>
                             </div>
                             
@@ -87,31 +85,40 @@
 <style>
     .contenedor{
         font-family: 'Yantramanav', sans-serif;
+        margin: 7.5em 1em 2.1em 1em;
+        overflow: hidden;
+        height: 23em;
+        /* position: relative; */
     }
 
     form{
         display: flex;
         flex-direction: column;
+        
     }
 
-    .form.login{
-        padding: .2em 0 .2em 0;
+
+    .formulario.login{
         background-color: rgb(248 248 255);
         color: #000000;
+        font-size: 1em; 
     }
 
-    .form.register.preview{
+    .formulario.register.preview{
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: .5em 0 2em 0;
-        background-image:   url(../assets/aurora-1197753_1280.jpg);
+        background-image:   url(../assets/aurora-g5db16d216_1280.jpg);
         background-size: cover;
         color: #DDDAEA;
     }
 
+    .formRegistro{
+        margin: 0 .2em;
+    }
+
     .label{
-        font-size: 1.2em;
+        font-size: .8em;
         display: flex;
         justify-content:space-between;
         margin: .5em 2.5em;
@@ -122,36 +129,187 @@
         border: 1px solid rgb(0, 0, 0);
         border-radius: 25px;
         text-align: center;
+        padding: .3em 0;
     }
-    .contenedor{
-        /* border: 1px solid black; */
-        /* height: 98vh; */
-        overflow: hidden;
-        margin: 0 10em;
-        padding: 5em 0;
+    
+    .input.registro{
+        background-color: rgb(255, 255, 255);
+        width: 70%;
+        margin: .3em auto;
+        font-size: .8em;
     }
 
-    .typeSub{
+    .msgRegistro{
+        font-size: .8em;
+        margin: 0;
+    }
+
+    .btnTypeSub{
         border: 1px solid rgba(3, 221, 182, .5);
-        width: 82%;
+        width: 72%;
         margin: 1em auto .5em auto;
-        padding: .5em 1em;
+        padding: .8em .2em;
         border-radius: 5px;
-        letter-spacing: 5px;
-        background-color: rgba(3, 221, 182, .2);
+        letter-spacing: 3px;
+        background-color: rgba(3, 221, 182, .5);
+        font-size: .7em;
     }
 
-    .typeSub.secundario{
+    .btnTypeSub.secundario{
         background-color: #060E27;
         color: white;
         border: 1px solid rgba(0, 0, 0, 0.5);
+        font-size: .7em;
     }
 
-    @media screen and (min-width: 577px){
+    .btnTypeSub.registro{
+        background-color: rgba(3, 221, 182, .5);
+        margin-top: 2.5em;
+        font-size: .7em;
+    }
 
-        .form.login{
-        padding: .5em 0 1.3em 0;
+   /* RESPONSIVE DESIGN -> Media Queries*/
+
+
+  @media screen and (min-width: 650px){
+    .contenedor{
+        height: 20em;
+        padding: 1em 0 2em 0;
+    }
+
+    .formulario{
+        height: 17em;
+    }
+
+    .formulario.login{
+        justify-content: center;
+    }
+
+    .btnTypeSub, .btnTypeSub.secundario{
+        padding: .8em 0;
+        width: 71%;
+        font-size: .8em;
+    }
+
+    .btnTypeSub.secundario{
+        padding: 1em .3em;
+        width: 60%;
+        font-size: .7em;
+    }
+
+    .crearCuenta{
+        align-items: center;
+        justify-content: center;
+        padding-top: 2em;    
+    }
+
+    .formlogin{
+        padding-top: 3em;
+    }
+
+    .msgRegistroDesktop{
+        padding-bottom: 1em;
+    }
+  }
+/* RESPONSIVE DESIGN -> Media Queries*/
+
+
+@media screen and (min-width: 1000px){
+    
+    .contenedor{
+        height: 26em;
+        /* padding: 1em 0 4em 0; */
+    }
+
+    .formulario{
+        height: 22em;
+    }
+
+    .formulario.login{
+        justify-content: center;
+    }
+
+    .btnTypeSub, .btnTypeSub.secundario{
+        padding: .8em 0;
+        width: 71%;
+        font-size: .8em;
+    }
+
+    .btnTypeSub.secundario{
+        padding: 1em .3em;
+        width: 55%;
+    }
+
+    .crearCuenta{
+        align-items: center;
+        justify-content: center;
+        padding-top: 3em;    
+    }
+
+    .formlogin{
+        padding-top: 7em;
+    }
+
+    .msgRegistroDesktop{
+        padding-bottom: 1em;
+    }
+
+    .contenedorRow{
+        margin: 1em 3em;
+        padding-top: 2em;
+    }
+
+    .label{
+        font-size: 1em;
+        margin: 1em 2em;
 
     }
+    .input{
+        margin-left: 0;
+        width: 65%;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 25px;
+        text-align: center;
+        
     }
+    .formDesktop{
+        margin: 1em 0;
+        padding: 0 1em;
+    }
+    .formulario.register.preview h5, .formulario.login.preview h5, .crearCuenta h5, .formlogin h5{
+        font-size: 1.5em;
+    }
+
+    .formulario.register.preview p, .formulario.login.preview p, .crearCuenta p, .formlogin p{
+        font-size: 1em;
+        margin-bottom: 2em;
+    }
+
+    .btnTypeSub.registro, .btnTypeSub.principal{
+        font-size: .9em;
+        width: 60%;
+    }
+
+    .input.registro{
+        width: 60%;
+        margin: .5em auto;
+        font-size: 1em;
+        padding: .2em 0;
+    }
+
+}    
+
+@media screen and (min-width: 1300px){
+
+    .contenedor{
+        height: 28em;
+        /* padding: 1em 0 4em 0; */
+    }
+
+    .formDesktop{
+        margin: 1em 5em;
+        padding: 0 1em;
+    }
+}
+
 </style>
