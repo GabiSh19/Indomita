@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="row">
-        <h2 class="titulo">Administrador de Viajes</h2>
+        <h2 class="tituloAdmin mt-5">Administrador de Viajes</h2>
       </div>
       <!-- <div class="row justify-content-center py-5" v-if="($store.state.viajes.length) == 0">
           <div class="col-auto">
@@ -10,12 +10,10 @@
         </div> -->
         <!-- <div  v-else> -->
         <div >
-          <div class="row justify-content-center py-4" id="searchContainer">
+          <div class="row justify-content-center py-1 mb-4" id="searchContainer">
             <div id="search"  class="col-8" style="display: flex;">
               <input id="input-search" v-model = "texto" @keyup= "formulario" class="form-control w-100 me-2"  type="text" placeholder="Ingrese su búsqueda" >
-              <button id="buttonSearch" class="btn btn-buscar" >
-                <i class="fa fa-search"></i> Buscar
-              </button>
+              <button id="buttonSearch" class="btn btn-buscar py-3" >Buscar</button>
             </div>
             <div class="col-2" style="display: flex;"> 
               <button type="button" class="btn btn-agregar" id="new" data-bs-toggle="modal" data-bs-target="#createModal" >Agregar Viaje</button>
@@ -77,10 +75,10 @@
           <div class="modal-body">
             <form class="form" @submit.prevent="mensajeEditarViaje()">
               <label for="code-obj" class="form-label">Código</label>
-              <input type="text" class="form-control" v-model="mostrarViaje.codigo">
+              <input type="text" class="form-control" v-model="mostrarViaje.codigo" disabled>
               <label for="name-obj" class="form-label">Nombre</label>
               <input type="text" class="form-control" v-model="mostrarViaje.nombre">
-              <label for="state-obj" class="form-label">Estado</label>
+              <label for="state-obj" class="form-label">Estado (ingresa true o false)</label>
               <input type="text" class="form-control" v-model="mostrarViaje.estado">
               <label for="price-obj" class="form-label">Precio</label>
               <input type="text" class="form-control" v-model="mostrarViaje.precio">
@@ -121,7 +119,7 @@
               <input type="text" class="form-control" v-model="agregarViaje.codigo">
               <label for="name-obj" class="form-label">Nombre</label>
               <input type="text" class="form-control" v-model="agregarViaje.nombre">
-              <label for="state-obj" class="form-label">Estado</label>
+              <label for="state-obj" class="form-label">Estado (ingresa true o false)</label>
               <input type="text" class="form-control" v-model="agregarViaje.estado">
               <label for="price-obj" class="form-label">Precio</label>
               <input type="text" class="form-control" v-model="agregarViaje.precio">
@@ -200,8 +198,8 @@
                 title: '¿Estás seguro de borrar este viaje?',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#f2b119',
-                cancelButtonColor: '#8B82B7',
+                confirmButtonColor: 'rgb(255,142,1)',
+                cancelButtonColor: 'rgba(3, 221, 182, .5)',
                 confirmButtonText: 'Si, Borrar'
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -255,7 +253,12 @@
       </script>
       
       <style>
-        
+        #searchContainer{
+          margin: 0;
+          padding: 0;
+          width: 92%;
+        }
+
         #card-img-top{
           max-width: 8rem;
           height: 60px;
@@ -265,8 +268,11 @@
           font-family: 'Montserrat', sans-serif;
         }
   
-        .titulo{
-          padding-top: 5rem;
+        .tituloAdmin{
+          padding-top: 4em;
+          color: #000;
+          text-align: center;
+          font-size: 1em ;
         }
   
         .table.table-bordered{
@@ -284,45 +290,102 @@
         #search{
           border-radius: 50px;
         }
+
+        #input-search{
+          font-size: .7em;
+        }
   
         .btn.btn-crear,.btn.btn-modificar{
-                background-color: #8B82B7;
+                background-color: rgba(3, 221, 182, .5);
                 color: azure;
                 font-family: 'Montserrat', sans-serif;
                 margin: 0;
             }
             .btn.btn-crear:hover,.btn.btn-modificar:hover{
-                background-color: #f2b119;
+                background-color: rgba(255,142,1,.7);
                 color: azure;
             }
-            .btn.btn-cancelar,.btn.btn-agregar,.btn.btn-buscar{
-                background-color: #8B82B7;
+            .btn.btn-cancelar,.btn.btn-agregar{
+                background-color: rgba(3, 221, 182, .5);
                 color: azure;
                 font-family: 'Montserrat', sans-serif;
+                font-size: .92em;
             }
-  
+            
+            .btn.btn-buscar{
+              border: 3px solid rgba(255,142,1,.7);
+              font-size: .9em;
+            }
+
             .btn.btn-agregar{
-                background-color: #f2b119;
+                background-color: rgb(255,142,1);
                 color: azure;
-                font-family: 'Montserrat', sans-serif;
+                padding: .4em .7em;
             }
   
             .btn.btn-cancelar:hover,.btn.btn-agregar:hover,.btn.btn-buscar:hover{
-                background-color: #f2b119;
+                background-color: rgba(255,142,1,.7);
                 color: azure;
             }
   
             .btn.btn-agregar:hover{
-                background-color: #f3c65c;
+                background-color: rgba(255,142,1,.7);
                 color: azure;
             }
   
             .btn.btn-eliminar{
-                background-color: #f2b119;
+                background-color: rgba(3, 221, 182, .5);
                 color: azure;
             }
             .btn.btn-eliminar:hover{
-                background-color: #f2b119;
+                background-color: rgba(3, 221, 182, .8);
                 color: azure;
             }
+        
+        /* RESPONSIVE DESIGN -> Media Queries*/
+
+      @media screen and (min-width: 650px){
+
+        #searchContainer{
+          width: 100%;
+        }
+
+        #input-search{
+          font-size: 1em;
+        }
+
+        .btn.btn-agregar{
+          padding: .2em 0;
+          font-size: 1em;
+        }
+
+        .tituloAdmin{
+          padding-top: 6rem;
+          padding-bottom: 2em;
+          font-size: 1.5em
+        }
+      }
+
+      /* RESPONSIVE DESIGN -> Media Queries*/
+
+      @media screen and (min-width: 1000px){
+
+        .btn.btn-agregar{
+          padding: 1em 1em;
+          font-size: 1em;
+        }
+
+      }
+
+      @media screen and (min-width: 1300px){
+        .contenedorTabla{
+          margin-bottom: 3em;
+        }
+       
+        
+      }
+
+      
+            
+      
       </style>

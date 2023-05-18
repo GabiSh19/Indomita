@@ -20,21 +20,11 @@
     
   </div> -->
 
-
-
-
-
-
-      <!-- <h1 class="text-center my-3 text-uppercase">top country population</h1>
-      <Continentes />
-      <Buscador />
-      <CardList /> -->
 </template>
   
   <script >
 
   import LoginView from "./views/LoginView.vue"
-  import AppPrueba from "./views/AppPrueba.vue"
 
   import HeaderComponent from './components/HeaderComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
@@ -52,7 +42,6 @@ export default {
   },
   components: {
     LoginView,
-    AppPrueba, 
     HeaderComponent,
     FooterComponent,
   }

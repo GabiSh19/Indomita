@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/HomeView',
+      path: '/',
       name: 'HomeView',
       component: () => import('../views/HomeView.vue')
     },
@@ -20,21 +20,10 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
-      path: '/register',
-      name: 'register',
-      component: () => import('../views/RegisterView.vue')
-    },
-    {
       path: '/countries',
       name: 'Pais',
       props: true,
       component: () => import('../views/CountriesView.vue')
-    },
-    {
-      path: '/AppPrueba',
-      name: 'AppPrueba',
-      props: true,
-      component: () => import('../views/AppPrueba.vue')
     },
     {
       path: '/AdminTravel',
@@ -53,12 +42,12 @@ const router = createRouter({
       component: () => import('../components/NotFound.vue')
     },
     {
-      path: "/HomeSass",
-      component: () => import('../views/HomeSass.vue')
+      path: "/ConfirmTravel",
+      component: () => import('../views/ConfirmTravel.vue')
     },
     {
-      path: "/",
-      component: () => import('../views/PurchaseForm.vue')
+      path: "/ContactView",
+      component: () => import('../views/ContactView.vue')
     },
   ]
 })
