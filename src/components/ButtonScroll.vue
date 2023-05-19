@@ -1,5 +1,6 @@
+<!-- Botón Scroll to top que realiza un emmit al componente padre  -->
+
 <template>
-  <!-- <IconSquareRoundedArrowUpFilled></IconSquareRoundedArrowUpFilled> -->
   <button class="scroll-top-button" @click="scrollToTop">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,11 +23,9 @@
       ></path>
     </svg>
   </button>
-  <!-- <button class="scroll-top-button" >Scroll to Top</button> -->
 </template>
 
 <script>
-import { IconSquareRoundedArrowUpFilled } from "@tabler/icons-vue";
 
 export default {
   methods: {
@@ -39,9 +38,6 @@ export default {
       // Emitir el evento al componente padre
       this.$emit("scroll-to-top");
     },
-  },
-  components() {
-    IconSquareRoundedArrowUpFilled;
   },
 };
 </script>

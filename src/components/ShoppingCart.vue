@@ -34,7 +34,6 @@
             <button class="btn btn-outline-info" id="btnLimpiarCarrito" type="button" @click="limpiarCarro(carrito)">Limpiar mi Carrito</button>
 
             <button class="btn btn-primary" id="btnFinalizaCompra" type="button" v-if="carrito.length != 0" @click="finalizaCompra(carrito)"> Finalizar mi compra </button>
-            <!-- <button class="btn btn-success" type="button" @click="finalizaCompra(carrito)"> Finalizar mi compra </button> -->
             
         </div> 
       </div>

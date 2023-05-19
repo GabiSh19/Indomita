@@ -1,3 +1,4 @@
+// Consume la api rest que recibe como argumento
 import { onMounted, ref } from 'vue'
 
 export function fetchData(url) {
@@ -5,7 +6,6 @@ export function fetchData(url) {
         
     onMounted(async() => {    
         try {
-            // const res = await fetch('https://restcountries.com/v3/all')
             const res = await fetch(url)
             arrayData.value = await res.json()
         } catch (error) {

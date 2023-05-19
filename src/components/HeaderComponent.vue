@@ -1,7 +1,6 @@
 <template>
   <header >
     <nav class="navbar fixed-top" id="navbar">
-
       <router-link class="listNav" to="/"><img class="logo" src="../assets/logo.png"></router-link>
       <div v-if="(loginIsTrue)" class="msgUsuario ">
           <p v-if="isRolUser" class="mb-3"> ¡Bienvenido! {{$store.state.user.email}}</p>           
@@ -50,13 +49,8 @@ export default {
     showMobileMenu: false,
     };
   },
-  // mounted() {
-  //   this.$store.dispatch('UsuarioActivo')
-  //   // console.log('usuarioactivo')
-  // },
   methods: {
     showMenu() {
-      console.log("aveer")
       this.showMobileMenu = !this.showMobileMenu;
     },
     logout(){

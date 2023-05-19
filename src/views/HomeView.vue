@@ -10,7 +10,6 @@
       <router-link to="/login"> <button class="actionStart">COMENZAR</button></router-link> 
     </div>
   </div>
-  <!-- <p>TU ELIGES EL DESTINO, NOSOTROS NOS ENCARGAMOS DEL RESTO</p> -->
 </template>
 
 <script setup>
@@ -116,14 +115,8 @@ body{
 
   .texto{
     position: absolute;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
     color: rgb(55, 55, 55);
-    /* width: auto; */
     height: calc(100% - 5em);
-    /* padding: 0 2%; */
     left: 65%;
     backdrop-filter: blur(20px);
     box-shadow: 10px 0 15px (0,0,0,1);
@@ -131,8 +124,6 @@ body{
 
   .titulo{
     color: rgb(255,142,1);
-    /* margin: 1em .3em .7em .3em; */
-    /* align-items: end; */
   }
 
   .subtitulo{

@@ -17,9 +17,7 @@
                 </ul>
             </div>
         </div>
-
     </div>
-
 </template>
 
 
@@ -71,7 +69,7 @@ export default {
         console.log(props.nombre)
         const nombreParams = useRoute();
         const {params} = nombreParams
-        
+        // fetch a la API 
         return {...fetchData(`https://restcountries.com/v3.1/name/${params.nombre}`)}
     }
 }

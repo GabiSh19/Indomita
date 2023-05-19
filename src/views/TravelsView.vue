@@ -4,7 +4,6 @@
 
       <div class="row justify-content-center py-5" v-if="($store.state.viajes.length) == 0">
         <div class="col-auto">
-        <!-- <fade-loader :loading="loading" :color="color" :size="size" class="mb-5"></fade-loader> -->
         <scale-loader :loading="loading" :color="color" :height="height" :width="width"></scale-loader>
         </div>
         </div>
@@ -22,7 +21,6 @@
                   <li class="list-group-item">Inscritos: {{viaje.inscritos }} / {{viaje.cupos }}</li>
                   <li class="list-group-item">Precio: $ {{new Intl.NumberFormat('ES', {style: 'currency', currency: 'clp' }).format(viaje.precio)}}</li>
               </ul>
-              <!-- <button @click="agregar(viaje)" :class = " viaje.estado === 'true' ? 'btnInscribir' : 'btnDisabled'" :disabled="viaje.estado === 'false' ">{{viaje.estado === 'true' ? 'Inscribirme' : 'No disponible' }}</button> -->
               <button v-if="(loginIsTrue)" @click="agregar(viaje)" :class = " viaje.estado === 'true' ? 'btnInscribir' : 'btnDisabled'" :disabled="viaje.estado === 'false' ">{{viaje.estado === 'true' ? 'Inscribirme' : 'No disponible' }}</button>
           </div>
       </div>
@@ -32,7 +30,6 @@
   
   
   <script>
-  import FadeLoader from 'vue-spinner/src/FadeLoader.vue'
   import {mapActions, mapState, mapMutations, mapGetters} from 'vuex' 
   import { useStore } from 'vuex'
 
@@ -58,10 +55,6 @@
         }
     },
 
-    components: {
-        FadeLoader
-    }, 
-
     created(){
         this.getViajes()
     },
@@ -77,20 +70,12 @@
         ...mapState(['viajes']),
         rankingViajes() {
             const rankingViajes = [...this.viajes];  
-            rankingViajes.sort((a, b) => b.inscritos - a.inscritos);
+            rankingViajes.sort((a, b) => a.inscritos - b.inscritos);
             return rankingViajes;
         },
         ...mapGetters(['loginIsTrue']),
 
-      },
-
-      // async mounted(){
-      //     this.$store.state.cursos=[]
-      //     if(this.$store.state.usuarioConectado===''){    
-      //         this.showAlert('No hay usuario conectado', 'Debe loguearse')
-      //         this.$router.push('/login')
-      //     }
-      // }
+      },  
   }
   
   </script>

@@ -40,7 +40,6 @@
                                     <button class="btnTypeSub secundario mt-0 mb-4" @click="step--">INICIAR SESIÓN</button>
                                 </div>
                             </div>
-                            
                     </div>
                     </v-window-item>
                     </v-window>
@@ -88,7 +87,6 @@
         margin: 7.5em 1em 2.1em 1em;
         overflow: hidden;
         height: 23em;
-        /* position: relative; */
     }
 
     form{
