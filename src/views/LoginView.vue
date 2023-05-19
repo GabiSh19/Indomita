@@ -4,12 +4,6 @@
 
 </template>
 
-
-<style>
-
-</style>
-
-
 <script>
 import LoginComponent from "../components/LoginComponent.vue";
 

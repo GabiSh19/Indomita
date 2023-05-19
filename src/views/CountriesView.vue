@@ -14,7 +14,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Continente: {{pais.region}}</li>
-                    <li class="list-group-item">Moneda: {{pais.currencies }}</li>
+                    <li class="list-group-item">Población: {{pais.population }} personas</li>
                     
                 </ul>
                 
@@ -45,7 +45,7 @@ body{
 
 .card{
     max-width: 18em;
-    height: 26em;
+    height: 22em;
     overflow: hidden;
 }
 .card-body{

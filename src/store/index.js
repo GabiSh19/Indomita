@@ -36,7 +36,6 @@ export default createStore({
     SET_USER (state, user) {
       state.user = user
       state.login = true;
-      // console.log(user)
     },
 
     CLEAR_USER (state) {
@@ -56,8 +55,10 @@ export default createStore({
     getViajesFiltrados(state, payload){
       state.viajesFiltrados = payload
     },
+
+    // Lógica del carrito de compras 
+
     agregar(state, payload){
-      // console.log(state.carrito)
       const yaExiste = state.carrito.some((element) => { 
           return payload.id === element.id
       })
@@ -67,7 +68,6 @@ export default createStore({
           state.valores = state.valores+(payload.precio) 
       }else{
           state.carrito.push(payload) 
-          // state.carrito = JSON.parse(localStorage.getItem('carrito')),
           state.valores = state.valores+(payload.precio) 
       }
       state.cantCarrito = state.carrito.length; 
@@ -123,37 +123,14 @@ export default createStore({
       state.carrito =[];
       state.valores = 0;
       router.push('/ConfirmTravel')
-      // router.push('/ConfirmTravel')
     }
     
 
   },
 
   actions: {
-
-    async UsuarioActivo ({commit}){
-      auth.onAuthStateChanged(async (user) => {
-        if (user) { 
-          const docuCifrada = await getDoc(doc(db, "usuarios", `${user.uid}`))
-          const rol = docuCifrada.data().rol;          
-            const userData = {
-              uid: user.uid,
-              email: user.email,
-              rol: rol
-            };
-            if (userData.rol === 'admin'){ 
-              this.state.rolAdmin = true;
-            }
-            else if (userData.rol === 'usuario'){
-              this.state.rolUser = true; 
-            }
-            commit('SET_USER', userData)          
-        } else {
-          commit('SET_USER', null)
-        }
-      })
-    },
-
+    
+    // Login de usuarios 
 
     async login ({ commit }, details) {
       const { email, password } = details
@@ -162,20 +139,20 @@ export default createStore({
       } catch (error) {
         switch(error.code) {
           case 'auth/user-not-found':
-            alert("User not found")
+            alert("Usuario no encontrado")
             break
           case 'auth/wrong-password':
-            alert("Wrong password")
+            alert("Contraseña incorrecta")
             break
           default:
-            alert("Something went wrong")
+            alert("Algo anda mal, intenta de nuevo")
         }
         return
       }
       commit('SET_USER', auth.currentUser)
       router.push('/TravelsView')
 
-
+      // Obtiene rol de quien que ha iniciado sesión (usuario o administrador)
       const docuCifrada = await getDoc(doc(db, "usuarios", `${auth.currentUser.uid}`))
         const rol = docuCifrada.data().rol;          
           const userData = {
@@ -191,13 +168,14 @@ export default createStore({
           }       
     },
 
+    // Registro de usuarios
+
     async register ({ commit}, details) {
       const { email, password } = details
       try {
         const infoUsuario = await createUserWithEmailAndPassword(auth, email, password).then((user) =>   {
           return user  
         });
-        console.dir(infoUsuario.user.uid) 
         await setDoc(doc(db, "usuarios", `${infoUsuario.user.uid}`), {
           correo: email,
           rol: 'usuario'
@@ -205,25 +183,27 @@ export default createStore({
       } catch (error) {
         switch(error.code) {
           case 'auth/email-already-in-use':
-            alert("Email already in use")
+            alert("Email ya existente")
             break
           case 'auth/invalid-email':
-            alert("Invalid email")
+            alert("Email inválido")
             break
           case 'auth/operation-not-allowed':
-            alert("Operation not allowed")
+            alert("Operación no permitida")
             break
           case 'auth/weak-password':
-            alert("Weak password")
+            alert("Contraseña muy corta")
             break
           default:
-            alert("Something went wrong")
+            alert("Algo anda mal")
         }
         return
       }
       commit('SET_USER', auth.currentUser)
       router.push('/TravelsView')
     },
+
+    // Cierre de sesión 
 
     async logout ({ commit }) {
       commit('CLEAR_USER')
@@ -233,19 +213,6 @@ export default createStore({
       this.state.rolUser = false;
     },
 
-    // fetchUser ({ commit }) {
-    //   auth.onAuthStateChanged(async user => {
-    //     if (user === null) {
-    //       commit('CLEAR_USER')
-    //     } else {
-    //       commit('SET_USER', user)
-    //       if (router.isReady() && router.currentRoute.value.path === '/login') {
-    //         router.push('/')
-    //       }
-    //     }
-    //   })
-    // },
-
      // CRUD -> READ 
 
      async getViajes ({commit}){
@@ -253,10 +220,8 @@ export default createStore({
       const listado = await getDocs(collection(db, "viajes"))
           listado.forEach(doc => {    
             let viaje =  doc.data()
-            // console.log(viaje)
             viaje.id = doc.id
             viajes.push(viaje)
-            // console.log(listado)
           });
           commit('getViajes', viajes)
       },

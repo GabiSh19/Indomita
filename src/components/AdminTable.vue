@@ -3,12 +3,6 @@
       <div class="row">
         <h2 class="tituloAdmin mt-5">Administrador de Viajes</h2>
       </div>
-      <!-- <div class="row justify-content-center py-5" v-if="($store.state.viajes.length) == 0">
-          <div class="col-auto">
-            <fade-loader :loading="loading" :color="color" :size="size" class="mb-5"></fade-loader>
-          </div>
-        </div> -->
-        <!-- <div  v-else> -->
         <div >
           <div class="row justify-content-center py-1 mb-4" id="searchContainer">
             <div id="search"  class="col-8" style="display: flex;">
@@ -19,6 +13,8 @@
               <button type="button" class="btn btn-agregar" id="new" data-bs-toggle="modal" data-bs-target="#createModal" >Agregar Viaje</button>
             </div>
           </div>
+
+          <!-- Tabla mostrada en la página "mantenedor" sólo para el administrador -->
           <div class=" table-responsive contenedorTabla">
             <table class="table table-bordered table-hover align-middle">
             <thead class="table-primary">
@@ -38,7 +34,7 @@
           </thead>
   
           <TBody>
-              <tr v-for="viaje in viajesFiltrados" :key="viaje.nombre">
+              <tr v-for="viaje in rankingViajes" :key="viaje.nombre">
                   <td  class="text-center">{{viaje.codigo}}</td>
                   <td  class="text-center">{{viaje.nombre}}</td>
                   <td  class="text-center">{{viaje.descripcion}}</td>
@@ -147,28 +143,20 @@
       <script>
       import Swal from 'sweetalert2'
       import {mapActions, mapState} from 'vuex';
-      import FadeLoader from 'vue-spinner/src/FadeLoader.vue'
-      import { useStore } from 'vuex'
       
       export default {
         name: 'AdminTable',
-        components: {
-            FadeLoader
-        },
         setup(){
           return{
             agregarViaje: {codigo: '', nombre: '', estado: '', precio: '', duracion: '', descripcion: '', cupos: '', inscritos: '', img: ''},
             idBorrarViaje: '',
-            color: '#d676ab',
             texto : '',    
           }
         },
           methods: { 
             formulario() {
               this.$store.dispatch('filtroName', this.texto)
-          }
-  
-            ,
+          },
             ...mapActions(['getViajes', 'getViaje', 'crearViaje', 'modificarViaje','eliminarViaje', 'filtroName']),
   
           // SweetAlert para agregar viaje
@@ -244,7 +232,12 @@
           },
   
           computed : {
-          ...mapState(['viajes', 'viajesFiltrados', 'mostrarViaje', 'agregarViaje' ]),
+            ...mapState(['viajes', 'viajesFiltrados', 'mostrarViaje', 'agregarViaje' ]),
+            rankingViajes() {
+              const rankingViajes = [...this.viajesFiltrados];  
+              rankingViajes.sort((a, b) => b.inscritos - a.inscritos);
+              return rankingViajes;
+            },
           },  
           
         }

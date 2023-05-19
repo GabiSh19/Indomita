@@ -1,3 +1,6 @@
+//Configuración de firebase para el auth del login, en el sitio web se realiza el 
+//login, logout y registro de un nuevo usuario.
+
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { initializeApp } from "firebase/app";

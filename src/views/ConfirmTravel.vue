@@ -1,14 +1,5 @@
 <template>
-    <!-- <div class="contenedorConfirm">
-        <img class="imgConfirmaReserva" src="../assets/airplane-4252410_1280.jpg" alt="">
-        <div class="texto">
-            <h2 class="titulo">¡FELICIDADES!</h2>
-            <h6 class="mb-3">Tu reserva ha sido confirmada</h6>
-            <router-link to="/TravelsView"> <button class="btn btn-primary btntoHome p-2">Volver</button> </router-link>
-        </div>
-    </div> -->
     <div class="confirmaReserva" >
-        <!-- <h2 class="titulo">¡FELICIDADES!</h2> -->
         <h6 class="mb-3 textoConfirma">Tu reserva ha sido confirmada</h6>
         <router-link to="/"> <button class="btn btn-primary btntoHome p-2">Volver</button> </router-link>
     </div>
