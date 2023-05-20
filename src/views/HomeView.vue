@@ -1,5 +1,5 @@
 <template>  
-  <div class="margeeen">
+  <div class="inicio">
     <video class="video-container" autoplay muted loop>
       <source src="../assets/ProyectVideo.mp4" type="video/mp4">
     </video>
@@ -29,7 +29,7 @@ body{
   padding: 0;
   object-fit: cover;
 }
-.margeeen{
+.inicio{
   background-color: rgba(0,0,0,1);
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ body{
   object-fit:fill;
   }
 
-  .margeeen{
+  .inicio{
     background-color: rgba(0,0,0,1);
     display: flex;
     justify-content: center;
