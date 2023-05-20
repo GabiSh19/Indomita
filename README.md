@@ -19,6 +19,14 @@ npm run dev
 npm run dev
 ```
 
+### Ingreso de usuarios 
+
+```html
+Usuario -> mail: usuario@micorreo.com , contraseña: usuario
+Administrador -> mail: administrador@micorreo.com , contraseña: administrador
+
+```
+
 ## Características:
 
 * Maquetación con HTML y CSS
